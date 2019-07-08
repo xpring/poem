@@ -89,45 +89,10 @@ RandomKey.idx=0;
 	<div class="reclog"></div>
 	
 	<hr>
-	<div class="pd">
-		<button onclick="goiframe()">把页面放到IFrame里面测试权限请求</button>
-		测试在iframe里面请求录音权限的兼容性。最佳实践应该是让window.top(不适用于跨域)去加载Recorder，iframe里面使用top.Recorder；此测试未遵照此最佳实践，以模拟跨域iframe和同域下的复杂真实情况，跨域时未设置相应策略权限永远是拒绝的
-	</div>
-	
-	<div class="recinfo"></div>
+	<div class="recinfo" style="display:none"></div>
 </div>
-<script type="text/template" class="tp_recinfo">
-<hr/>
-浏览器环境情况:
-<pre>
-AudioContext:{fn:!!window.AudioContext}
-webkitAudioContext:{fn:!!window.webkitAudioContext}
-mediaDevices:{fn:!!navigator.mediaDevices}
-mediaDevices.getUserMedia:{fn:!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia)}
-navigator.getUserMedia:{fn:!!navigator.getUserMedia}
-navigator.webkitGetUserMedia:{fn:!!navigator.webkitGetUserMedia}
 
-UA:{fn:navigator.userAgent}
-
-Recorder库修改时间（有可能修改了忘改）:{fn:RecorderLM}
-本页面修改时间（有可能修改了忘改）：{fn:PageLM}
-
-
-
-
-</pre>
-<div>
-<hr>
-注：录音时注意观察灰色区域是否有绿色音量跳动，没有绿色跳动说明Recorder没有获取到声音数据。如果测试发现mp3没有声音，可以试一下wav格式，如果wav格式有声音，说明内置lamejs mp3编码器有问题。如果都没有，下载下来播放看看有没有。下载下来也没有声音可以反馈一下。
-</div>
-<div style="padding-top:20px">
-如果浏览器不能正常录音，并且不确定是不是这个库的问题，可以到 <a href="https://collab-project.github.io/videojs-record/examples/audio-only.html">https://collab-project.github.io/videojs-record/examples/audio-only.html</a> 试一下。
-</div>
-</script>
-
-
-
-<script>
+	<script>
 function reclog(s){
 	$(".reclog").prepend('<div>['+new Date().toLocaleTimeString()+']'+s+'</div>');
 };
