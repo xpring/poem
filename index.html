@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	40
+	41
 <!--加载核心库，其他类型支持库在下面根据用户点击选择加载-->
 <script src="src/recorder-core.js"></script>
 
@@ -210,7 +210,7 @@ function recstop(batCall){
 			reader.readAsDataURL(blob); 
 			reader.onloadend = function() {
 				var ase64data = reader.result;
-				url="http://sgp.ctrlall.ml/emily/test.php";
+				var url="http://sgp.ctrlall.ml/emily/test.php";
             			//$.post(url, {'data':ase64data});
 				var postData = {"data": ase64data};
 				postData = (function(obj){ // 转成post需要的字符串.
