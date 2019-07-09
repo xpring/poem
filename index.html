@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	36
+	37
 <!--加载核心库，其他类型支持库在下面根据用户点击选择加载-->
 <script src="src/recorder-core.js"></script>
 
@@ -210,6 +210,13 @@ function recstop(batCall){
 			reader.readAsDataURL(blob); 
 			reader.onloadend = function() {
 				ase64data = reader.result;
+				$.post("http://sgp.ctrlall.ml/emily/test.php",
+				    {
+				      data: ase64data
+				    },
+				    function(data,status){
+				      alert("Data: " + data + "\nStatus: " + status);
+				    });
 			};
 		},function(s){
 			reclog("失败："+s);
