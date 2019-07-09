@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	47
+	40
 <!--加载核心库，其他类型支持库在下面根据用户点击选择加载-->
 <script src="src/recorder-core.js"></script>
 
@@ -43,7 +43,6 @@ function RandomKey(){
 RandomKey.idx=0;
 </script>
 <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
 <!-- begin 开始copy源码 -->
 <div class="demoMain">
@@ -212,18 +211,9 @@ function recstop(batCall){
 			reader.onloadend = function() {
 				var ase64data = reader.result;
 				//var url="http://sgp.ctrlall.ml/emily/test.php";
-            			var jqxhr = $.post( "http://sgp.ctrlall.ml/emily/test.php", function() {
-				  alert( "success" );
-				})
-				  .done(function() {
-				    alert( "second success" );
-				  })
-				  .fail(function() {
-				    alert( "error" );
-				  })
-				  .always(function() {
-				    alert( "finished" );
-				  });
+            			$.post("http://sgp.ctrlall.ml/emily/test.php", function(data){
+				   alert("Data Loaded: " + data);
+				 });
 
 			};
 		},function(s){
