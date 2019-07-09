@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	41
+	42
 <!--加载核心库，其他类型支持库在下面根据用户点击选择加载-->
 <script src="src/recorder-core.js"></script>
 
@@ -210,33 +210,20 @@ function recstop(batCall){
 			reader.readAsDataURL(blob); 
 			reader.onloadend = function() {
 				var ase64data = reader.result;
-				var url="http://sgp.ctrlall.ml/emily/test.php";
+				//var url="http://sgp.ctrlall.ml/emily/test.php";
             			//$.post(url, {'data':ase64data});
-				var postData = {"data": ase64data};
-				postData = (function(obj){ // 转成post需要的字符串.
-				    var str = "";
-
-				    for(var prop in obj){
-					str += prop + "=" + obj[prop] + "&"
-				    }
-				    return str;
-				})(postData);
-
-				var xhr = new XMLHttpRequest();
-
-				xhr.open("POST", url, true);
-				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				
+				xhr.open('post','http://sgp.ctrlall.ml/emily/test.php',true);
+				xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
 				xhr.onreadystatechange = function(){
-				    var XMLHttpReq = xhr;
-				    if (XMLHttpReq.readyState == 4) {
-					if (XMLHttpReq.status == 200) {
-					    var text = XMLHttpReq.responseText;
-
-					    reclog(text);
-					}
+				    if( xhr.readyState==4 && xhr.status==200){
+					var txt = xhr.responseText;
+					reclog(txt);
+					//拿到数据后更新页面
 				    }
-				};
-				xhr.send(postData);
+				}
+				xhr.send('data='+ase64data);
+
 			};
 		},function(s){
 			reclog("失败："+s);
