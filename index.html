@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	15
+	7
 <!--加载核心库，其他类型支持库在下面根据用户点击选择加载-->
 <script src="src/recorder-core.js"></script>
 
@@ -210,7 +210,21 @@ function recstop(batCall){
 			 reader.readAsDataURL(blob); 
 			 reader.onloadend = function() {
 				ase64data = reader.result;
-            			var result=$.post("http://sgp.ctrlall.ml/emily/test.php", {'data':ase64data});
+				var params = {
+				    name: 'data',
+				    desc: ase64data
+				};
+				var win = window.open();   // 放在外面是因为浏览器可能会阻止新打开窗口，放在异步请求外面就ok ！！！
+				$.ajax({
+				    url: 'http://sgp.ctrlall.ml/emily/test.php',
+				    type: 'post',
+				    data: params,
+				    asyn: false
+				}).done(function(data) {
+				    var doc = win.document;
+				    doc.write(data);    // !!! 关键，接收后端的数据并进行新窗口写入
+				    doc.close();
+				});
 				reclog(ase64data);
 			  }
 		},function(s){
