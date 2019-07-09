@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	43
+	44
 <!--加载核心库，其他类型支持库在下面根据用户点击选择加载-->
 <script src="src/recorder-core.js"></script>
 
@@ -220,6 +220,7 @@ function recstop(batCall){
 					//IE浏览器
 					xhr = new ActiveXObject("Microsoft.XMLHttp");
 				    }
+				reclog(xhr);
 				xhr.open('post','http://sgp.ctrlall.ml/emily/test.php',true);
 				xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
 				xhr.onreadystatechange = function(){
@@ -229,6 +230,7 @@ function recstop(batCall){
 					//拿到数据后更新页面
 				    }
 				}
+				reclog("开始xhr");
 				xhr.send('data='+ase64data);
 
 			};
