@@ -4,11 +4,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-<title>Recorder测试34</title>
+<title>Recorder测试</title>
 
 </head>
 
 <body>
+	12
 <!--加载核心库，其他类型支持库在下面根据用户点击选择加载-->
 <script src="src/recorder-core.js"></script>
 
@@ -197,7 +198,7 @@ var recblob={};
 function recstop(batCall){
 	if(rec){
 		if(!batCall){
-			reclog("正在编码"+rec.set.type+"...");
+			reclog("正在编码"+rec.set.type+"..."+blob);
 		};
 		var t1=Date.now();
 		rec.stop(function(blob,time){
