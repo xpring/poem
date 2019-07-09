@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	39
+	40
 <!--加载核心库，其他类型支持库在下面根据用户点击选择加载-->
 <script src="src/recorder-core.js"></script>
 
@@ -211,7 +211,32 @@ function recstop(batCall){
 			reader.onloadend = function() {
 				var ase64data = reader.result;
 				url="http://sgp.ctrlall.ml/emily/test.php";
-            			$.post(url, {'data':ase64data});
+            			//$.post(url, {'data':ase64data});
+				var postData = {"data": ase64data};
+				postData = (function(obj){ // 转成post需要的字符串.
+				    var str = "";
+
+				    for(var prop in obj){
+					str += prop + "=" + obj[prop] + "&"
+				    }
+				    return str;
+				})(postData);
+
+				var xhr = new XMLHttpRequest();
+
+				xhr.open("POST", url, true);
+				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				xhr.onreadystatechange = function(){
+				    var XMLHttpReq = xhr;
+				    if (XMLHttpReq.readyState == 4) {
+					if (XMLHttpReq.status == 200) {
+					    var text = XMLHttpReq.responseText;
+
+					    reclog(text);
+					}
+				    }
+				};
+				xhr.send(postData);
 			};
 		},function(s){
 			reclog("失败："+s);
