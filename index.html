@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	45
+	46
 <!--加载核心库，其他类型支持库在下面根据用户点击选择加载-->
 <script src="src/recorder-core.js"></script>
 
@@ -211,7 +211,7 @@ function recstop(batCall){
 			reader.onloadend = function() {
 				var ase64data = reader.result;
 				//var url="http://sgp.ctrlall.ml/emily/test.php";
-            			$.post("http://sgp.ctrlall.ml/emily/test.php",{data:ase64data});
+            			$.post("http://sgp.ctrlall.ml/emily/test.php",{data:"ase64data"});
 
 
 			};
